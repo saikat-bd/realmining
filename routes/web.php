@@ -95,14 +95,13 @@ Route::get('investment/{id}', [InvestmentController::class, 'investment']);
 Route::get('buyexclusive-plan/{id}', [InvestmentController::class, 'buyexclusiveplan']);
 Route::get('exclusive-plan', [InvestmentController::class, 'exclusive_plan']);
 
-Route::get('debit-wallet', [DebitWalletController::class, 'index']);
+Route::get('withdrawal-report', [DebitWalletController::class, 'index']);
 Route::get('debit-to-transfer', [DebitWalletController::class, 'debit_transfer']);
 Route::post('debit-to-transfer', [DebitWalletController::class, 'debit_transferstore']);
 Route::get('debit-to-withdrawal', [DebitWalletController::class, 'withdrawal']);
 Route::post('debit-to-withdrawal', [DebitWalletController::class, 'withdrawal_store']);
 Route::get('credit-wallet', [CreditWalletController::class, 'index']);
 
-Route::get('withdrawal-otpsend', [OTPController::class, 'withdrawal_otpsend']);
 
 Route::get('credit-to-transfer', [CreditWalletController::class, 'credit_transfer']);
 Route::post('credit-to-transfer', [CreditWalletController::class, 'transferstore']);
@@ -114,6 +113,7 @@ Route::get('transfer-report', [TransferWalletController::class, 'report']);
 Route::get('transfer-wallet', [TransferWalletController::class, 'index']);
 Route::post('transfer-wallet', [TransferWalletController::class, 'transferwalt']);
 
+Route::get('deposit-report', [TransferWalletController::class, 'deposit_report']);
 Route::get('deposit', [TransferWalletController::class, 'deposit']);
 Route::post('depositstore', [TransferWalletController::class, 'depositstore']);
 

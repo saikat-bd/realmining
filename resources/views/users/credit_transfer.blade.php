@@ -1,6 +1,6 @@
 @extends('users.master')
 @section('title')
-    <title>Like-Debit Credit to Transfer</title>
+    <title>to Transfer</title>
 @endsection
 @section('sub_title')
     Credit to Investment

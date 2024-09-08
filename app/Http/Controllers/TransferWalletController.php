@@ -26,6 +26,15 @@ class TransferWalletController extends Controller
         return view('users.transfer_report', $data);
     }
 
+
+    public function deposit_report()
+    {
+        $data['history'] = Deposit::where('user_id', Auth::id())
+                                       ->get();
+        return view('users.deposit_report', $data);
+    }
+
+
     public function index()
     {
         $data['userinfo'] = User::find(Auth::id());

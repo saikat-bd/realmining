@@ -1,29 +1,28 @@
 @extends('users.master')
 @section('title')
-    <title>Withdrawal</title>
+    <title>Transfer Report</title>
 @endsection
+
 @section('sub_title')
-    withdrawal
-@endsection
-@section('style')
+    Transfer Report
 @endsection
 
 @section('maincontianer')
     <div class="container-fluid">
 
-
         <div class="mb-3 border-bottom pb-2">
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ url('debit-to-withdrawal') }}">Withdrawal</a>
+                    <a class="nav-link" href="{{ url('deposit') }}">Deposit</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ url('withdrawal-report') }}">Withdrawal Report</a>
+                    <a class="nav-link active" href="{{ url('deposit-report') }}">Deposit Report</a>
                 </li>
             </ul>
         </div>
 
         <div class="row">
+
             <table class="table table-bordered table-sm">
                 <thead>
                     <tr>
@@ -37,12 +36,12 @@
                         $amount = 0;
                         $credit_amount = 0;
                     @endphp
-                    @foreach ($widthrawal as $item)
+                    @foreach ($history as $item)
                         @php
 
                             $amount += $item->amount;
 
-                            if ($item->status == 'Paid') {
+                            if ($item->deposit_status == 'Success') {
                                 $statusname = '<strong style="color:green;">Success</strong>';
                             } else {
                                 $statusname = '<strong style="color:red;">Pending</strong>';
@@ -51,8 +50,11 @@
                         <tr>
                             <td style="width: 70%">
                                 {{ date('d-m-Y H:i A', strtotime($item->created_at)) }}<br />
-                                {{ $item->account_name }}<br />
-                                {{ $item->binance_id }}
+                                @if ($item->fileupload)
+                                    <a href="{{ asset('public/screenshot/' . $item->fileupload) }}"
+                                        target="_blank">{{ $item->fileupload }}</a>
+                                @endif
+
 
                             </td>
 
@@ -77,11 +79,8 @@
                 </tfoot>
 
             </table>
+
         </div>
 
-
     </div>
-@endsection
-
-@section('script')
 @endsection

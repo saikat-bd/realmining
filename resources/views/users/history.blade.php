@@ -8,7 +8,7 @@
 @endsection
 
 @section('maincontianer')
-    <div class="container-fluid" style="color:white;">
+    <div class="container-fluid">
         <div class="row">
 
 
@@ -29,7 +29,7 @@
                             <option value="Generation" @if (Request::get('tran_type') == 'Generation') selected @endif>Generation</option>
                             <option value="daily" @if (Request::get('tran_type') == 'daily') selected @endif>Daily</option>
                             <option value="rank" @if (Request::get('tran_type') == 'rank') selected @endif>Incentive</option>
-                            <option value="salary" @if (Request::get('tran_type') == 'salary') selected @endif>Salary</option>
+
                         </select>
                     </div>
                     <div class="col-5">
@@ -44,7 +44,7 @@
             </form>
 
 
-            <table class="table table-bordered table-sm" style="color:white;">
+            <table class="table table-bordered table-sm">
                 <thead>
                     <tr>
                         <th>Details</th>

@@ -114,10 +114,10 @@
                         <div class="row no-gutters align-items-center p-2">
                             <div class="col" align="center">
                                 <div class="h6 mb-2 font-weight-bold text-white-800"><strong
-                                        style="font-size:18px;"></strong>{{ number_format($withdrawal, 2) }} Coin
+                                        style="font-size:18px;"></strong>{{ number_format(0, 2) }} Coin
                                 </div>
-                                <strong style="font-size:13px;"><a href="{{ url('withdrawal-history?type=withdrawal') }}"
-                                        style="color:#0082FA;">Total Coin</a></strong>
+                                <strong style="font-size:13px;"><a href="#" style="color:#fcfcfc;">Total
+                                        Coin</a></strong>
                             </div>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
             <div class="col-xl-2 col-md-6 col-6 mb-0">
                 <div class="h-50">
                     <div class="mt-2" style="text-align: center">
-                        <a href="{{ url('exclusive-plan') }}" class="btn btn-primary btn-block">Share Plan</a>
+                        <a href="#" class="btn btn-primary btn-block">Share Plan</a>
                     </div>
                 </div>
             </div>

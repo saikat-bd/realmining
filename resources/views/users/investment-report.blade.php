@@ -8,7 +8,7 @@
 @endsection
 
 @section('maincontianer')
-    <div class="container-fluid mt-3">
+    <div class="container-fluid ">
         <div class="mb-3 border-bottom pb-2">
             <ul class="nav nav-pills">
                 <li class="nav-item">

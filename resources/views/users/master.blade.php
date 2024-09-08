@@ -51,6 +51,19 @@
             background-color: #3A46AE;
             border-color: white;
         }
+
+        .bg-light {
+            background-color: #3A46AE !important;
+            color: white !important;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .footermenu a {
+            color: white;
+            text-decoration: none;
+            padding: 3px;
+        }
     </style>
     @yield('style')
 
@@ -122,7 +135,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">
+            <div id="content" style="margin-bottom: 80px; padding-top:20px;">
 
                 {{-- <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
@@ -192,43 +205,39 @@
 
             </div>
 
-            <div class="fixed-bottom bg-light mt-5">
-                <div class="container-fluid">
-                    <div class="d-flex justify-content-between">
+
+            <div class="fixed-bottom bg-light p-1">
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="d-flex justify-content-between footermenu">
                         <a href="{{ url('dashboard') }}">
-                            <span></span>
+                            <img src="{{ asset('public/icons/icons8-home-50.png') }}" alt=""
+                                style="width:25px;"><br />
                             Home
                         </a>
                         <a href="{{ url('profile') }}">
+                            <img src="{{ asset('public/icons/profile.png') }}" alt="" style="width:25px;"><br />
                             Profile
                         </a>
                         <a href="{{ url('change-password') }}">
-                            Change Password
+                            <img src="{{ asset('public/icons/password.png') }}" alt=""
+                                style="width:25px;"><br />
+                            Password
                         </a>
                         <a href="{{ url('logout') }}">
+                            <img src="{{ asset('public/icons/logout.png') }}" alt="" style="width:25px;"><br />
                             Logout
                         </a>
                     </div>
                 </div>
             </div>
-            <!-- End of Main Content -->
-
-
-
-            <!-- Footer
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; LIKE 2017</span>
-                    </div>
-                </div>
-            </footer>-->
-            <!-- End of Footer -->
 
         </div>
+
+
         <!-- End of Content Wrapper -->
 
     </div>
+
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->

@@ -16,8 +16,8 @@ class DebitWalletController extends Controller
 {
     public function index()
     {
-        $data['userinfo'] = User::find(Auth::id());
-        return view('users.debit_wallet', $data);
+        $data['widthrawal'] = Withdrawal::where('user_id', Auth::id())->get();
+        return view('users.withdrawal_report', $data);
     }
     
     public function debit_transfer()
@@ -138,14 +138,12 @@ class DebitWalletController extends Controller
                 'binance_id'     => 'required',
                 'amount'         => 'required',
                 'transation_pin' => 'required',
-                'otp'            => 'required',
             ];
             $custommessage = [
                 'account_name.required'      => 'Account Name is required!',
                 'binance_id.required'        => 'Wallet Address is required!',
                 'amount.required'            => 'Amount is required!',
                 'transation_pin.required'    => 'Transaction PIN is required!',
-                'otp.required'               => 'OTP is required!',
             ];
 
             $validations = Validator::make($alldata, $rules, $custommessage);
@@ -153,17 +151,12 @@ class DebitWalletController extends Controller
                 return redirect()->back()->withInput()->withErrors($validations);
             }
 
-            $otpcheck = OTP::where('otpcode', $request->otp)->where('email', Auth::user()->email)->first();
-
-            if(empty($otpcheck)){
-                return redirect()->back()->withInput()->withErrors(array('otp' => 'Your OTP incorrect!'));
-            }
-
+           
 
             $amount             = $request->amount;
 
-            if($amount < 20){
-               return redirect()->back()->withInput()->withErrors(array('amount' => 'Minimum $20.00 Amount!'));     
+            if($amount < 10){
+               return redirect()->back()->withInput()->withErrors(array('amount' => 'Minimum $10.00 Amount!'));     
             }
            
 
@@ -174,7 +167,7 @@ class DebitWalletController extends Controller
             $transactionpin     = $userinfo->transactionpin;
             $transfer_balance   = $userinfo->transfer_balance;
 
-            $perchatnage        = $amount / 100 * 7;
+            $perchatnage        = $amount / 100 * 10;
             $total_cost         = $amount + $perchatnage;
 
             if($transfer_balance >= $total_cost){
@@ -211,9 +204,6 @@ class DebitWalletController extends Controller
                 $withnew->withdawal_date    = date('Y-m-d');
                 $withnew->save();
 
-                $otpcheck->delete();
-
-
                 return redirect('debit-to-withdrawal')->with('success', 'Balance withdrawal successful waiting for admin approved!'); 
 
 
@@ -225,7 +215,7 @@ class DebitWalletController extends Controller
 
 
             }else{
-                return redirect('debit-to-withdrawal')->with('error', 'Debit balance not available'); 
+                return redirect('debit-to-withdrawal')->with('error', 'Balance not available'); 
             }
 
         }else{
