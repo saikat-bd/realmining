@@ -1,0 +1,74 @@
+
+.btn--base:focus+.btn, .btn--base:focus {
+    box-shadow: 0 0 0 0.25rem #FB364040;
+}
+
+.btn--base, .btn--base:hover, body::-webkit-scrollbar-thumb, .scroll-to-top, .hero__radar [class*="dot-"], .hero__radar [class*="dot-"]::before, .hero__radar [class*="dot-"]::after, .choose-card__icon, .package-card__feature-list li::before, .package-card.popular-package::after, .post-share li a:hover, .blog-sidebar .title::after, .subscribe-form .subscribe-btn, .d-widget__icon::after, .social-link-list li a:hover, .contact-social-links li::before, .btn-outline--base:hover, .custom--accordion .accordion-button:not(.collapsed), .custom--table thead, .preloader__box [class*="line-"], body.lightmode .pagination .page-item.active .page-link{
+    background-color: #FB3640;
+}
+
+.page-scroll-bar::-webkit-progress-value {
+    background-color: #FB3640;
+}
+
+.page-scroll-bar::-moz-progress-bar{
+    background-color: #FB3640;
+}
+
+.bg--base, .d-widget::after, .pagination .page-item.active .page-link, .pagination .page-item .page-link:hover{
+    background-color: #FB3640; !important;
+}
+
+.pagination .page-item .page-link:hover {
+    border-color: #FB3640; !important;
+}
+
+.inline-menu li::after{
+    background-color: #FB364040;
+}
+
+.text--base, .page-breadcrumb li:first-child::before, .header .main-menu li a:hover, .header .main-menu li a:focus, .main-menu li.active > a, .cmn-list li::before, .preloader__sitename, .lightmode .preloader__sitename, .page-breadcrumb li a:hover{
+    color: #FB3640;
+}
+
+.section-subtitle, .header .main-menu li.menu_has_children:hover > a::before{
+    color: #FB3640; !important;
+}
+
+.overview-card::after, .overview-item:nth-of-type(4n + 1) .overview-card::after{
+    border: 1px solid #FB3640;
+}
+
+.overview-card__icon ::before, .ratings i{
+    color: #FB3640; !important;
+}
+
+.btn-outline--base{
+    color: #FB3640;
+    border: 1px solid #FB3640;
+}
+
+.section-subtitle, .custom--accordion-two .accordion-button:not(.collapsed), .header .site-logo.site-title, .hero__top-title, .inline-menu li a:hover, .map-icon i, .contact-info-list .contact-info-single i, .contact-info-list .contact-info-single a:hover, a:hover{
+    color: #FB3640;
+}
+
+.form--control:focus, 
+.d-widget:hover,
+.choose-card:hover {
+    border-color: #FB3640;
+}
+
+.header .main-menu li .sub-menu,
+.header.menu-fixed .header__bottom,
+.footer,
+.lightmode .custom--table thead {
+    background-color: #0d222b;
+}
+
+.btn-close:focus {
+    box-shadow: 0 0 0 0.25rem #FB364040;
+}
+
+.form--control:focus {
+    box-shadow: 0 0 5px #FB364059;
+}
