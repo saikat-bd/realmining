@@ -19,8 +19,9 @@
         display: none;
     }
 
-    .btn {
-        background: red !important;
+    .btn,
+    .bg--base {
+        background: #D18A32 !important;
     }
 </style>
 @section('maincontent')

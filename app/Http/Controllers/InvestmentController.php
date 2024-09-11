@@ -42,6 +42,15 @@ class InvestmentController extends Controller
         return view('users.investment-report', $data);
     }
 
+    public function exclusive_report()
+    {
+        $data['history'] = ExclusivePlanBuy::where('user_id', Auth::id())
+                                      ->join('exclusive_plans', 'exclusive_plans.id', '=', 'exclusive_plan_buys.exclusive_id')
+                                      ->select('exclusive_plan_buys.*', 'exclusive_plans.plan_name')
+                                      ->get();
+        return view('users.exclusive-report', $data);
+    }
+
 
     public function exclusive_plan()
     {
@@ -80,7 +89,7 @@ class InvestmentController extends Controller
             $newtransation->user_id         = Auth::id();
             $newtransation->payment_type    = "transfer";
             $newtransation->inoutstatus     = "exclusive";
-            $newtransation->note            = "Exclusive plan purchasing";
+            $newtransation->note            = "Share plan purchasing";
             $newtransation->tran_date       = date('Y-m-d');
             $newtransation->save();
             $currrent = Transaction::Where('user_id', Auth::id())
@@ -102,7 +111,7 @@ class InvestmentController extends Controller
                 $this->lavelone($userinfo->ref_id);
             }
 
-            return redirect('dashboard')->with('success', 'Exclusive plan purchasing done!');
+            return redirect('dashboard')->with('success', 'Share plan purchasing done!');
 
 
 

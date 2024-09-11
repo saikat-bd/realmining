@@ -84,7 +84,8 @@
 
 
                         <div style="margin-top: 30px;">
-                            <a href="{{ url('investment/' . $item->id) }}" class="btn btn-primary btn-block">BUY
+                            <a onclick="return confirm('Are you sure buy this package?')"
+                                href="{{ url('investment/' . $item->id) }}" class="btn btn-primary btn-block">BUY
                                 PACKAGE</a>
                         </div>
                     </div>

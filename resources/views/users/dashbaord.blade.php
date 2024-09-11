@@ -165,7 +165,7 @@
             <div class="col-xl-2 col-md-6 col-6 mb-0">
                 <div class="h-50">
                     <div class="mt-2" style="text-align: center">
-                        <a href="#" class="btn btn-primary btn-block">Share Plan</a>
+                        <a href="{{ url('exclusive-plan') }}" class="btn btn-primary btn-block">Share Plan</a>
                     </div>
                 </div>
             </div>
@@ -222,7 +222,9 @@
                             <td style="border-bottom: 1px solid #0082FA; color:green;">{{ $item->coin_name }}</td>
                             <td style="border-bottom: 1px solid #0082FA; color:red;">${{ number_format($item->rate, 2) }}
                             </td>
-                            <td style="text-align: right; border-bottom: 1px solid #0082FA;"><a href="">Buy</a></td>
+                            <td style="text-align: right; border-bottom: 1px solid #0082FA;">
+                                <a href="{{ url('ipocoinbuy/' . $item->id) }}">Buy</a>
+                            </td>
                         </tr>
                     @endforeach
                 </table>

@@ -18,6 +18,11 @@
     #con_hide1 {
         display: none;
     }
+
+    .btn,
+    .bg--base {
+        background: #D18A32 !important;
+    }
 </style>
 @section('maincontent')
     <div class="main-wrapper">

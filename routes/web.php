@@ -27,6 +27,7 @@ use App\Http\Controllers\GenerationPlanController;
 use App\Http\Controllers\ForgotTransactionPinController;
 use App\Http\Controllers\OTPController;
 use App\Http\Controllers\ActiveYourAccountController;
+use App\Http\Controllers\IPOController;
 
 
 Route::get('/clear', function() {
@@ -90,10 +91,14 @@ Route::get('my-refrences', [DashboardController::class, 'my_refrences']);
 Route::get('my-team', [DashboardController::class, 'my_team']);
 Route::get('team-ranks', [DashboardController::class, 'team_rank']);
 
+Route::get('ipocoinbuy/{id}', [IPOController::class, 'ipocoinbuy']);
+Route::post('ipocoinstore', [IPOController::class, 'iconbuystore']);
+
 Route::get('investment-report', [InvestmentController::class, 'investment_report']);
 Route::get('investment/{id}', [InvestmentController::class, 'investment']);
 Route::get('buyexclusive-plan/{id}', [InvestmentController::class, 'buyexclusiveplan']);
 Route::get('exclusive-plan', [InvestmentController::class, 'exclusive_plan']);
+Route::get('exclusive-report', [InvestmentController::class, 'exclusive_report']);
 
 Route::get('withdrawal-report', [DebitWalletController::class, 'index']);
 Route::get('debit-to-transfer', [DebitWalletController::class, 'debit_transfer']);

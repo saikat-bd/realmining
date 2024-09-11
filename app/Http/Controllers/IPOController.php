@@ -1,34 +1,96 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Models\Transaction;
-use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
 
-class ActiveYourAccountController extends Controller
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Coin;
+use App\Models\User;
+use App\Models\GenerationPlan;
+use App\Models\Transaction;
+use App\Models\IPOConBuy;
+use Illuminate\Support\Str;
+
+class IPOController extends Controller
 {
 
-    private $amount   = 15;
-    private $lavel_1  = 8;
-    private $lavel_2  = 4;
-    private $lavel_3  = 2;
-    private $lavel_4  = 1;
-    private $lavel_5  = 0.50;
-    private $lavel_6  = 0.25;
-    private $lavel_7  = 0.20;
-    private $lavel_8  = 0.15;
-    private $lavel_9  = 0.10;
-    private $lavel_10 = 0.10;
-    private $username = "";
+    private $amount   = 0;
+    private $lavel_1  = 0;
+    private $lavel_2  = 0;
+    private $lavel_3  = 0;
+    private $lavel_4  = 0;
+    private $lavel_5  = 0;
+    private $lavel_6  = 0;
+    private $lavel_7  = 0;
+    private $lavel_8  = 0;
+    private $lavel_9  = 0;
+    private $lavel_10   = 0;
+    private $username    = "";
+    private $Transaction = "";
 
-    public function activeaccount()
+    public function ipocoinbuy($id)
     {
-        $userinfo = User::find(Auth::id());
-        if($userinfo->transfer_balance >= 15){
+        $data['userinfo']            = User::find(Auth::id());
+        $data['coininfo']            = Coin::find($id);
+        return view('users.ipo_con_buy', $data);
+    }
 
-            $this->transaction($userinfo);
+    public function iconbuystore(Request $request)
+    {
+
+        $alldata = $request->all();
+        $rules = [
+            'quantity'              => 'required',
+            'transation_pin'        => 'required',
+        ];
+        $custommessage = [
+            'quantity.required'       => 'Quantity is required!',
+            'transation_pin.required' => 'Transaction Pin is required!',
+        ];
+
+        $validations = Validator::make($alldata, $rules, $custommessage);
+        if($validations->fails()){
+            return redirect()->back()->withInput()->withErrors($validations);
+        }
+
+        $id                  = $request->id;
+        $packageinfo         = Coin::find($id);
+        $userinfo            = User::find(Auth::id());
+        $generation          = GenerationPlan::first();
+        $this->lavel_1       = $generation->lavel_1;
+        $this->lavel_2       = $generation->lavel_2;
+        $this->lavel_3       = $generation->lavel_3;
+        $this->lavel_4       = $generation->lavel_4;
+        $this->lavel_5       = $generation->lavel_5;
+        $this->lavel_6       = $generation->lavel_6;
+        $this->lavel_7       = $generation->lavel_7;
+        $this->lavel_8       = $generation->lavel_8;
+        $this->lavel_9       = $generation->lavel_9;
+        $this->lavel_10      = $generation->lavel_10;
+
+
+
+       
+        $transfer_balance    = $userinfo->transfer_balance;
+        $coin_rate           = $packageinfo->rate;
+        $quantity            = $request->quantity;
+        $total_amount        = $coin_rate * $quantity;
+      
+
+        if($transfer_balance >= $total_amount){
+
+           $newtransation                   = new Transaction();
+            $newtransation->debit_amount    = $total_amount;
+            $newtransation->transaction     = Str::uuid();
+            $newtransation->user_id         = Auth::id();
+            $newtransation->payment_type    = "transfer";
+            $newtransation->inoutstatus     = "purchase";
+            $newtransation->note            = "IPO Coin Purchase";
+            $newtransation->tran_date       = date('Y-m-d');
+            $newtransation->save();
 
             $currrent = Transaction::Where('user_id', Auth::id())
                                         ->where('payment_type', 'transfer')
@@ -37,40 +99,32 @@ class ActiveYourAccountController extends Controller
                                         ->groupBy('user_id')
                                         ->first();
             $userinfo->transfer_balance = $currrent->total_credit - $currrent->total_debit;
-            $userinfo->status           = "Active";
             $userinfo->save();
-            $this->username = $userinfo->email;
+
+            $investment                 = new IPOConBuy();
+            $investment->user_id        = Auth::id();
+            $investment->coin_rate      = $coin_rate;
+            $investment->quantity       = $quantity;
+            $investment->total_amount   = $total_amount;
+            $investment->save();
+
+            $this->amount               = $total_amount;
+            $this->username             = $userinfo->email;
+
             if($userinfo->ref_id){
                 $this->lavelone($userinfo->ref_id);
             }
-            
 
-            return redirect('dashboard')->with('success', 'Your account has been actived success!');
+           return redirect('dashboard')->with('success', 'IPO Product Purchasing done!');
 
         }else{
-            return redirect('dashboard')->with('error', 'Your balance not available!');
+            return redirect('dashboard')->with('error', 'Your balance not available');
         }
 
     }
 
 
-    private function transaction($user)
-    {
-        $newtransaction                  = new Transaction();
-        $newtransaction->user_id         = $user->id;
-        $newtransaction->debit_amount    = 15;
-        $newtransaction->transaction     = Str::uuid();
-        $newtransaction->note            = "Account actived";
-        $newtransaction->payment_type    = "transfer";
-        $newtransaction->inoutstatus     = "actived";
-        $newtransaction->amount_status   = "paid";
-        $newtransaction->withdraw_status = "Success";
-        $newtransaction->tran_date       = date('Y-m-d');
-        $newtransaction->save();
-    }
-
-
-    private function lavelone($user_id)
+     private function lavelone($user_id)
     {
         $income                         = $this->amount / 100 * $this->lavel_1;
 
@@ -356,7 +410,7 @@ class ActiveYourAccountController extends Controller
 
     }
 
-     private function lavelten($user_id)
+    private function lavelten($user_id)
     {
         $income                         = $this->amount / 100 * $this->lavel_10;
         $newtransation                  = new Transaction();

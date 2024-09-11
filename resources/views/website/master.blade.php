@@ -13,7 +13,7 @@
     <meta name="title" Content="{{ $settings->meta_title }}">
 
     <meta name="description" content="{{ $settings->meta_descrption }}">
-    <meta name="keywords" content="My GTN, GTN">
+    <meta name="keywords" content="Real Mining">
     <link type="image/x-icon" href="{{ asset('public/logo/' . $settings->favicon) }}" rel="shortcut icon">
 
 
@@ -22,13 +22,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="{{ $settings->company_name }} - Home">
 
-    <meta itemprop="name" content="My GTN - Home">
-    <meta itemprop="description" content="My GTN">
+    <meta itemprop="name" content="Real Mining">
+    <meta itemprop="description" content="Real Mining">
     <meta itemprop="image" content="{{ asset('public/logo/' . $settings->favicon) }}">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="My GTN">
-    <meta property="og:description" content="Global Trading Network">
+    <meta property="og:title" content="Real Mining">
+    <meta property="og:description" content="Real Mining">
     <meta property="og:image" content="{{ asset('public/logo/' . $settings->favicon) }}" />
     <meta property="og:image:type" content="png" />
     <meta property="og:image:width" content="1180" />

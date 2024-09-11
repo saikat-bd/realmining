@@ -18,12 +18,12 @@
                     <div class="col-5 row">
                         <select class="form-control" name="tran_type" id="tran_type">
                             <option value="">--Select--</option>
-                            <option value="admin" @if (Request::get('tran_type') == 'admin') selected @endif>Received Admin</option>
+                            <option value="admin" @if (Request::get('tran_type') == 'admin') selected @endif>Add Money</option>
                             <option value="user" @if (Request::get('tran_type') == 'user') selected @endif>Received User</option>
                             <option value="transfer" @if (Request::get('tran_type') == 'transfer') selected @endif>Transfer To User
                             </option>
                             <option value="purchase" @if (Request::get('tran_type') == 'purchase') selected @endif>Investment</option>
-                            <option value="exclusive" @if (Request::get('tran_type') == 'exclusive') selected @endif>Exclusive Plus
+                            <option value="exclusive" @if (Request::get('tran_type') == 'exclusive') selected @endif>Share Plan
                             </option>
                             <option value="withdrawal" @if (Request::get('tran_type') == 'withdrawal') selected @endif>Withdrawal</option>
                             <option value="Generation" @if (Request::get('tran_type') == 'Generation') selected @endif>Generation</option>

@@ -1,37 +1,38 @@
 @extends('users.master')
 @section('title')
-    <title>Exclusive Plan</title>
+    <title>Share Plan</title>
 @endsection
 @section('sub_title')
-    Exclusive Plan
+    Share Plan
 @endsection
 @section('style')
     <style>
-        .img-thumbnail {
-            background-color: #192D36;
-            border: 2px solid #2F5464;
-        }
 
-        .img-thumbnail h5 {
-            font-size: 16px;
-            line-height: 25px;
-        }
 
-        .btn-primary:hover {
-            background-color: #1F363F;
-            border-color: #1F363F;
-        }
+
     </style>
 @endsection
 
 @section('maincontianer')
     <div class="container-fluid">
+
+        <div class="mb-3 border-bottom pb-2">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url('exclusive-plan') }}">Share Plan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('exclusive-report') }}">Share Report</a>
+                </li>
+
+            </ul>
+        </div>
         @include('users.success')
         <div class="row">
 
             @foreach ($exlusiveplan as $item)
                 <div class="col-xl-6 col-md-6 mb-1">
-                    <div class="h-100 py-2" style="color:white;">
+                    <div class="h-100 py-2">
                         <div class="img-thumbnail">
                             <div class="row no-gutters align-items-center p-2">
                                 <div class="col" align="center">
@@ -48,7 +49,7 @@
                             <div class="row no-gutters align-items-center m-2">
                                 <a onclick="return confirm('Are you sure buy exclusive plan?')"
                                     href="{{ url('buyexclusive-plan/' . $item->id) }}" class="btn btn-primary btn-block">Buy
-                                    Exclusive Plan</a>
+                                    Share Plan</a>
                             </div>
                         </div>
                     </div>

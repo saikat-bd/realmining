@@ -92,20 +92,31 @@ class DashboardController extends Controller
 
     public function invite_link()
     {
-        $data['userinfo'] = User::find(Auth::id());
-        $data['reffercount'] = User::where('ref_id', Auth::id())->count();
+        $data['userinfo']      = User::find(Auth::id());
+        $data['reffercount']   = User::where('ref_id', Auth::id())->count();
         $data['totaldownline'] = Team::where('team_id', '=', Auth::id())->count();
-        $firstlavelids = Team::where('team_id', Auth::id())->where('position', 1)->pluck('user_id');
-        $secendlavelids = Team::where('team_id', Auth::id())->where('position', 2)->pluck('user_id');
-        $thirdlavelids = Team::where('team_id', Auth::id())->where('position', 3)->pluck('user_id');
-        $fourlavelids = Team::where('team_id', Auth::id())->where('position', 4)->pluck('user_id');
-        $fivelavelids = Team::where('team_id', Auth::id())->where('position', 5)->pluck('user_id');
+
+        $firstlavelids   = Team::where('team_id', Auth::id())->where('position', 1)->pluck('user_id');
+        $secendlavelids  = Team::where('team_id', Auth::id())->where('position', 2)->pluck('user_id');
+        $thirdlavelids   = Team::where('team_id', Auth::id())->where('position', 3)->pluck('user_id');
+        $fourlavelids    = Team::where('team_id', Auth::id())->where('position', 4)->pluck('user_id');
+        $fivelavelids    = Team::where('team_id', Auth::id())->where('position', 5)->pluck('user_id');
+        $sixlavelids    = Team::where('team_id', Auth::id())->where('position', 6)->pluck('user_id');
+        $sevenlavelids    = Team::where('team_id', Auth::id())->where('position', 7)->pluck('user_id');
+        $eightlavelids    = Team::where('team_id', Auth::id())->where('position', 8)->pluck('user_id');
+        $ninelavelids    = Team::where('team_id', Auth::id())->where('position', 9)->pluck('user_id');
+        $tenlavelids    = Team::where('team_id', Auth::id())->where('position', 10)->pluck('user_id');
 
         $data['firstgen_amount']    = Transaction::whereIn('user_id', $firstlavelids)->where('inoutstatus', 'purchase')->sum('debit_amount');
         $data['secendgen_amount']    = Transaction::whereIn('user_id', $secendlavelids)->where('inoutstatus', 'purchase')->sum('debit_amount');
         $data['thirdgen_amount']    = Transaction::whereIn('user_id', $thirdlavelids)->where('inoutstatus', 'purchase')->sum('debit_amount');
         $data['fourgen_amount']    = Transaction::whereIn('user_id', $fourlavelids)->where('inoutstatus', 'purchase')->sum('debit_amount');
         $data['fivegen_amount']    = Transaction::whereIn('user_id', $fivelavelids)->where('inoutstatus', 'purchase')->sum('debit_amount');
+        $data['sixgen_amount']    = Transaction::whereIn('user_id', $sixlavelids)->where('inoutstatus', 'purchase')->sum('debit_amount');
+        $data['sevengen_amount']    = Transaction::whereIn('user_id', $sevenlavelids)->where('inoutstatus', 'purchase')->sum('debit_amount');
+        $data['eightgen_amount']    = Transaction::whereIn('user_id', $eightlavelids)->where('inoutstatus', 'purchase')->sum('debit_amount');
+        $data['nonegen_amount']    = Transaction::whereIn('user_id', $ninelavelids)->where('inoutstatus', 'purchase')->sum('debit_amount');
+        $data['tengen_amount']    = Transaction::whereIn('user_id', $tenlavelids)->where('inoutstatus', 'purchase')->sum('debit_amount');
 
        
 
